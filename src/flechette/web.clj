@@ -15,7 +15,7 @@
     :body "Whatchu talkin' bout again, Willis?"}])
 
 
-(defn list-posts []
+(defn list-posts [request]
   (-> (generate-string posts-response)
       (response)
       (content-type "application/json")))
