@@ -1,0 +1,5 @@
+db:
+  image: postgres:9.4
+  command: postgres
+  ports:
+    - "49501:5432"

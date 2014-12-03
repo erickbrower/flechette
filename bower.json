@@ -1,0 +1,19 @@
+{
+  "name": "flechette",
+  "version": "0.0.0",
+  "authors": [
+    "Erick Brower <cerickbrower@gmail.com>"
+  ],
+  "description": "An incredibly over-engineered blog.",
+  "main": "flechette.core",
+  "license": "MIT",
+  "homepage": "erickbrower.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
