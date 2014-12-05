@@ -1,18 +1,21 @@
 {
   "name": "flechette",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "authors": [
     "Erick Brower <cerickbrower@gmail.com>"
   ],
   "description": "An incredibly over-engineered blog.",
   "main": "flechette.core",
+  "keywords": [
+    "blog"
+  ],
   "license": "MIT",
-  "homepage": "erickbrower.com",
   "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
+    "resources/public/bower_components",
     "test",
     "tests"
   ]

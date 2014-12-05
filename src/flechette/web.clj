@@ -13,11 +13,11 @@
 (set-resource-path! (clojure.java.io/resource "templates"))
 
 (def posts-response 
-  [{:created-at (t/minus (t/now) (t/days 1))
+  [{:created_at (t/minus (t/now) (t/days 1))
     :slug "this-is-a-test-post"
     :title "This is a test post!"
     :body "Whatchu talkin' bout, Willis?"}
-   {:created-at (t/now)
+   {:created_at (t/now)
     :slug "this-is-another-test-post"
     :title "This is another test post!"
     :body "Whatchu talkin' bout again, Willis?"}])
