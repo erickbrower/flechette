@@ -1,48 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="An incredibly over-engineered blog.">
-<meta name="author" content="@erickbrower">
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='An incredibly over-engineered blog.'>
+<meta name='author' content='@erickbrower'>
 
 <title>@erickbrower</title>
 
 <!-- Bootstrap core CSS -->
-<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href='/bower_components/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet'>
+<link href='/bower_components/bootstrap/dist/css/bootstrap-theme.min.css' rel='stylesheet'>
 
 <!-- Custom styles for this template -->
-<link href="/css/main.css" rel="stylesheet">
-
-{% block styles %}{% endblock %}
+<link href='/css/main.css' rel='stylesheet'>
 
 </head>
 <body>
-<div class="container">
-  <div class="blog-header">
-    <h1 class="blog-title"><a href='/' style='color: black; text-decoration: none;'>erickbrower</a></h1>
-    <p class="lead blog-description">I write code. Sometimes.</p>
+<div class='container'>
+  <div class='blog-header'>
+    <h1 class='blog-title'><a href='/' style='text-decoration: none;'>erickbrower</a></h1>
+    <p class='lead blog-description'>I write code. Sometimes.</p>
   </div>
-  <div class="row">
-    <div class="col-sm-8 blog-main">
-      {% block content %}
-      {% endblock %}
-    </div>
-    <!-- /.blog-main -->
-    {% include "partials/sidebar.html" %}
+  <div id='main-content' class='row'>
   </div>
   <!-- /.row -->
 </div>
-<!-- /.container -->
-{% include "partials/search_results_modal.html" %}
-
-<div class="blog-footer">
-  <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a
-    href="https://twitter.com/mdo">@mdo</a>.</p>
+<div class='blog-footer'>
+  <p>Blog template built for <a href='http://getbootstrap.com'>Bootstrap</a> by <a
+    href='https://twitter.com/mdo'>@mdo</a>.</p>
   <p>
-  <a href="#">Back to top</a>
+  <a href='#'>Back to top</a>
   </p>
 </div>
 <!-- /.footer -->
@@ -53,7 +42,7 @@
 <script src='/bower_components/es5-shim/es5-sham.js'></script>
 <script src='/bower_components/jquery/dist/jquery.js'></script>
 <script src='/bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
+<script src='/js/dist/bundle.js'></script>
 
-{% block scripts %} {% endblock %}
 </body>
 </html>

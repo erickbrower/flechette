@@ -1,6 +1,6 @@
-(ns flechette.schema
+(ns flechette.schema.posts
   (:use korma.core)
-  (:require flechette.db))
+  (:require [flechette.schema.core :as base]))
 
 (declare posts)
 
@@ -8,20 +8,21 @@
   (entity-fields :title 
                  :slug 
                  :body 
-                 :created_at 
+                 :created_at
+                 :updated_at
                  :is_published))
 
-;; Post functions
+(defn count-posts []
+  (-> ["SELECT COUNT(*) FROM posts WHERE posts.is_published = true"]
+    (exec-raw :results)
+    (first)
+    (:count)))
+
 (defn create-post [post]
-  (let [timestamp (sqlfn now)
-        attrs (merge post {:updated_at timestamp
-                           :created_at timestamp})]
-    (insert posts 
-            (values attrs))))
+  (base/create-model posts post))
 
 (defn get-post [id]
-    (first (select posts
-                   (where {:id id}))))
+  (base/get-model posts id))
 
 (defn get-post-by-slug [slug]
   (first (select posts 

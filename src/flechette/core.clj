@@ -1,6 +1,6 @@
 (ns flechette.core
-  (:require flechette.web)
+  (:require flechette.web.core)
   (:gen-class))
 
 (defn -main [& args]
-  (apply flechette.web/-main args))
+  (apply flechette.web.core/-main args))

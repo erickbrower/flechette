@@ -18,5 +18,10 @@
     "resources/public/bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "es5-shim": "~4.0.5",
+    "bootstrap": "~3.3.1",
+    "jquery": "~2.1.1"
+  }
 }
