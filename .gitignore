@@ -11,3 +11,4 @@ pom.xml.asc
 
 node_modules
 resources/public/bower_components
+resources/public/js/dist/.module-cache
