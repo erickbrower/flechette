@@ -1,6 +1,6 @@
 # flechette
 
-My personal website, erickbrower.com. Ridiculously over-engineered.
+My personal website, [erickbrower.com](http://erickbrower.com). Ridiculously over-engineered.
 
 ## Prerequisites
 
