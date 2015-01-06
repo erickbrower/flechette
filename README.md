@@ -1,18 +1,18 @@
 # flechette
 
-FIXME
+My personal website, erickbrower.com. Ridiculously over-engineered.
 
 ## Prerequisites
 
-You will need [Leiningen][] 2.0.0 or above installed.
-
 [leiningen]: https://github.com/technomancy/leiningen
+[Docker]: https://docs.docker.com/installation/mac/ 
+[Fig]: http://www.fig.sh/
 
 ## Running
 
-To start a web server for the application, run:
-
-    lein ring server
+* To start Postgresql and others, run `fig up -d`
+* To start a web server for the application, run `lein run`
+* To start a REPL, run `lein repl`
 
 ## License
 
