@@ -1,26 +1,13 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var React = require('react'),
   Backbone = require('backbone'),
-  Router = require('./router.jsx'),
-  IndexContentView = require('./views/index_content_view.jsx');
+  Router = require('./router.jsx');
 
-Backbone.$ = $ = require('jquery');
+Backbone.$ = require('jquery');
 
-var router = new Router();
+new Router();
 
-router.on('route:index', function() {
-  $.get('/api/posts')
-    .done(function(response) {
-      debugger;
-      React.renderComponent(
-        React.createElement(IndexContentView, {posts: response.data, count: response.count}), 
-        document.getElementById('main-content'));
-    });
-});
-
-Backbone.history.start();
-
-},{"./router.jsx":153,"./views/index_content_view.jsx":154,"backbone":2,"jquery":5,"react":151}],2:[function(require,module,exports){
+},{"./router.jsx":153,"backbone":2,"jquery":5,"react":151}],2:[function(require,module,exports){
 //     Backbone.js 1.1.2
 
 //     (c) 2010-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -30573,20 +30560,42 @@ module.exports = require('./lib/React');
 },{"./lib/React":33}],152:[function(require,module,exports){
 module.exports=require(3)
 },{"/Users/erick/Workbench/flechette/node_modules/backbone/node_modules/underscore/underscore.js":3}],153:[function(require,module,exports){
-var Backbone = require('backbone');
+var Backbone = require('backbone'),
+  React = require('react'),
+  IndexContentView = require('./views/index_content_view.jsx'),
+  NewPostContentView = require('./views/new_post_content_view.jsx');
 
 var Router = Backbone.Router.extend({
+  initialize: function() {
+    Backbone.history.start({ pushState: true });
+  },
+
   routes: {
-    '/^posts\/(\d+)/': 'postById',
-    '/^posts\/[a-z0-9-]+/': 'postBySlug',
-    'posts/create': 'postCreate', 
-    '*actions': 'index'
-  }
+    '/posts/new': 'onPostNew',
+    '': 'onIndex',
+    "/^posts\/(\d+)/": 'onPostById',
+    "/^posts\/[a-z0-9-]+/": 'onPostBySlug'
+  },
+
+  onIndex: function() {
+    $.get('/api/posts')
+      .done(function(response) {
+        React.render(
+          React.createElement(IndexContentView, {posts: response.data, count: response.count}), 
+          document.getElementById('main-content'));
+      });
+  },
+
+  onPostNew: function() {
+    React.render(
+      React.createElement(NewPostContentView, null),
+      document.getElementById('main-content'));
+    }
 });
 
 module.exports = Router;
 
-},{"backbone":2}],154:[function(require,module,exports){
+},{"./views/index_content_view.jsx":154,"./views/new_post_content_view.jsx":155,"backbone":2,"react":151}],154:[function(require,module,exports){
 var React = require('react'),
   PostExcerptListView = require('./post_excerpt_list_view.jsx'),
   SidebarView = require('./sidebar_view.jsx');
@@ -30604,7 +30613,52 @@ var IndexContentView = React.createClass({displayName: "IndexContentView",
 
 module.exports = IndexContentView;
 
-},{"./post_excerpt_list_view.jsx":155,"./sidebar_view.jsx":158,"react":151}],155:[function(require,module,exports){
+},{"./post_excerpt_list_view.jsx":157,"./sidebar_view.jsx":160,"react":151}],155:[function(require,module,exports){
+var React = require('react'),
+  NewPostFormView = require('./new_post_form_view.jsx');
+
+var NewPostContentView = React.createClass({displayName: "NewPostContentView",
+  render: function() {
+    return (
+      React.createElement("div", {className: "col-sm-12"}, 
+        React.createElement(NewPostFormView, null)
+      )
+    );
+  }
+});
+
+module.exports = NewPostContentView;
+
+},{"./new_post_form_view.jsx":156,"react":151}],156:[function(require,module,exports){
+var React = require('react');
+
+var NewPostFormView = React.createClass({displayName: "NewPostFormView",
+  render: function() {
+    return (
+      React.createElement("form", {className: "form-horizontal", role: "form"}, 
+        React.createElement("div", {className: "form-group"}, 
+          React.createElement("div", {className: "col-sm-12"}, 
+            React.createElement("input", {type: "text", className: "form-control", id: "post-title", placeholder: "Title"})
+          )
+        ), 
+        React.createElement("div", {className: "form-group"}, 
+          React.createElement("div", {className: "col-sm-12"}, 
+            React.createElement("input", {type: "text", className: "form-control", id: "post-body", placeholder: "Post stuff!"})
+          )
+        ), 
+        React.createElement("div", {className: "form-group"}, 
+          React.createElement("div", {className: "col-sm-12"}, 
+            React.createElement("button", {type: "button", className: "btn btn-primary"}, "Post")
+          )
+        )
+      )
+    );
+  }
+});
+
+module.exports = NewPostFormView;
+
+},{"react":151}],157:[function(require,module,exports){
 var React = require('react'),
   _ = require('underscore'),
   PostExcerptView = require('./post_excerpt_view.jsx');
@@ -30622,7 +30676,7 @@ var PostExcerptListView = React.createClass({displayName: "PostExcerptListView",
 
 module.exports = PostExcerptListView;
 
-},{"./post_excerpt_view.jsx":156,"react":151,"underscore":152}],156:[function(require,module,exports){
+},{"./post_excerpt_view.jsx":158,"react":151,"underscore":152}],158:[function(require,module,exports){
 var React = require('react');
 
 var PostExcerptView = React.createClass({displayName: "PostExcerptView",
@@ -30649,7 +30703,7 @@ var PostExcerptView = React.createClass({displayName: "PostExcerptView",
 
 module.exports = PostExcerptView;
 
-},{"react":151}],157:[function(require,module,exports){
+},{"react":151}],159:[function(require,module,exports){
 var React = require('react');
 
 var SidebarSearchFormView = React.createClass({displayName: "SidebarSearchFormView",
@@ -30667,7 +30721,7 @@ var SidebarSearchFormView = React.createClass({displayName: "SidebarSearchFormVi
 
 module.exports = SidebarSearchFormView;
 
-},{"react":151}],158:[function(require,module,exports){
+},{"react":151}],160:[function(require,module,exports){
 var React = require('react'),
   SidebarSearchFormView = require('./sidebar_search_form_view.jsx');
 
@@ -30692,4 +30746,4 @@ var SidebarView = React.createClass({displayName: "SidebarView",
 
 module.exports = SidebarView;
 
-},{"./sidebar_search_form_view.jsx":157,"react":151}]},{},[1]);
+},{"./sidebar_search_form_view.jsx":159,"react":151}]},{},[1]);

@@ -13,7 +13,7 @@
         (content-type "application/json"))))
 
 (defn new-post [request]
-  (-> (render-file "create_post.html")
+  (-> (render-file "new_post.html" {})
       (response)
       (content-type "text/html")))
 
